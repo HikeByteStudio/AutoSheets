@@ -15,30 +15,30 @@ AutoSheets automates repetitive sheet production in Autodesk® Revit®. Create d
 
 Typical install (Autodesk Apps Framework):
 - Installer places the add‑in bundle into:
-  `C:\ProgramData\Autodesk\Revit\Addins\<RevitYear>\AutoSheets.bundle`
+  `C:\ProgramData\Autodesk\ApplicationPlugins\AutoSheets.bundle`
 - Restart Revit. Launch from the Add‑Ins ribbon (AutoSheets).
 
 Uninstall:
 - Use Autodesk App Store uninstall or Windows __Settings > Apps & features__ to remove the product entry.
 - Or close Revit and delete the bundle folder from:
-  `C:\ProgramData\Autodesk\Revit\Addins\<RevitYear>\AutoSheets.bundle`
-- Remove any per‑user files from `%LOCALAPPDATA%` if present, then restart Revit.
+  `C:\ProgramData\Autodesk\ApplicationPlugins\AutoSheets.bundle`
+- Manually Remove any per‑user files from `C:\Users\<USER>\AppData\Roaming\AutoSheets` if present, then restart Revit.
 
 ## Usage (workflow)
 1. Open project in Revit and run AutoSheets from the Add‑Ins ribbon.  
 2. Select a master (template) sheet from your project. The titleblock and legends will be used.  
-3. Add rows manually or Import from Excel (XLSX). Required columns: `Number`, `Name`, `ViewName`, `OffsetX`, `OffsetY`.  
+3. Add rows manually or Import from Excel (XLSX). Required columns: `Sheet number`, `Sheet name`, `View name`, `Offset X`, `Offset Y`.  
 4. Choose unit type for offsets (Metric mm or Imperial ft‑in). Enter offsets and preview placement.  
 5. Run validation and fix any highlighted issues.  
 6. Click Create — AutoSheets duplicates the template, copies titleblock parameters, replicates legends and places views. Review results dialog for created/failed items.
 
 ## Excel format (XLSX)
 Columns (case‑insensitive):
-- `Number` — sheet number (required)  
-- `Name` — sheet name (required)  
-- `ViewName` — exact view name from the project (leave blank for no view)  
-- `OffsetX` — optional; unit interpretation depends on selected unit type  
-- `OffsetY` — optional
+- `Sheet number` — sheet number (required)  
+- `Sheet name` — sheet name (required)  
+- `View name` — exact view name from the project (leave blank for no view)  
+- `Offset X` — optional; unit interpretation depends on selected unit type  
+- `Offset Y` — optional
 
 Example row:
 `100`, `Ground Floor Plan`, `GF - Plan`, `0'-0"`, `0'-4"`
@@ -65,13 +65,5 @@ Notes:
 - Complex titleblocks or nested families may cause parameter copy issues; failures are logged.  
 - Very large batches can be slow or memory‑intensive — back up your project before large operations.  
 - Workshared projects: perform operations following your central/local workflow (work on a local copy or coordinate with your BIM manager).
-
-## Building from source
-- Open solution in Visual Studio 2022, restore NuGet packages, build for .NET Framework 4.8.  
-- Place the compiled `.addin` / bundle into:
-  `C:\ProgramData\Autodesk\Revit\Addins\<RevitYear>\AutoSheets.bundle`
-
-## License & attribution
-- See repository license file. The product uses the Revit API and follows Autodesk add‑in packaging conventions.
 
 ---
